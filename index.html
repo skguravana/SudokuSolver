@@ -69,7 +69,7 @@
 </head>
 <body class="text-center">
     <h2 class="bg-success text-center">SUDOKU SOLVER</h2>
-    <p class="error_Message text-danger"></p>
+    <p class="errmsg text-danger"></p>
     <div id="board" class="mt-5">
         <div class="level">
             <input type="number" min="1" max="9" class="input row1col1">
@@ -198,7 +198,8 @@
         const solvebttn = document.querySelector('.solvebtn');
         var inputboxes = document.querySelectorAll('.input');
 
-        const error_message = document.querSelector('.error_Message');
+        const errmsg = document.querySelector('.errmsg');
+
 
         //Here the SudokuSolver code starts
 
@@ -288,7 +289,8 @@
                 if (!user_invalid.some(pos => pos[0] === row && pos[1] === col)) {
                     user_invalid.push([row, col]);
                 }
-                error_Message.innerHTML = "Each number from 1 to 9 must be used exactly once in each row, column, and 3x3 box within the grid.";
+                
+                
                 
 
             }
@@ -304,9 +306,11 @@
         let intervalid = setInterval(()=>{
             if(user_invalid.length==0){
                 solvebttn.disabled=false;
+                errmsg.innerHTML="   ";
             }
             else{
                 solvebttn.disabled=true;
+                errmsg.innerHTML="Each number from 1 to 9 must be used exactly once in each row, column, and 3x3 box within the grid.";
             }
         })
 
@@ -435,18 +439,10 @@
                 alert("UNSOLVABLE")
             }
         }
-
-
-
-        
-
-        
-
         
     </script>
     
 </body>
 </html>
-
 
 
